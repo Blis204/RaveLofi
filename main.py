@@ -9,7 +9,7 @@ bot = lightbulb.BotApp(token=os.getenv("TOKEN"),
                        prefix=">>",
                        intents=hikari.Intents.ALL,
                        # Insert your guild id
-                       default_enabled_guilds=[990664463621439539])
+                       default_enabled_guilds=[1004096813906792458])
 
 
 bot.load_extensions_from("extensions/", must_exist=True, recursive=True)

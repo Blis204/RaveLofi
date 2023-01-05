@@ -1,15 +1,22 @@
+import lightbulb
 import hikari
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 import os
 
-load_dotenv(find_dotenv())
+load_dotenv()
 
-bot = hikari.GatewayBot(token=os.getenv("TOKEN"))
+bot = lightbulb.BotApp(token=os.getenv("TOKEN"), prefix=">>")
 
 
-@bot.listen()
-async def on_start(event: hikari.StartedEvent):
+@bot.listen(hikari.StartedEvent)
+async def on_start(event):
     print("Bot has started")
 
+
+@bot.command
+@lightbulb.command("ping", "checks if the bot is alive")
+@lightbulb.implements(lightbulb.PrefixCommand)
+async def ping(ctx: lightbulb.Context) -> None:
+    await ctx.respond("Pong!")
 
 bot.run()

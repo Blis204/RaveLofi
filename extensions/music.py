@@ -56,6 +56,13 @@ async def on_start(event: hikari.StartedEvent):
 
     result = await lavalink.auto_search_tracks(song)
     await lavalink.play(guild, result[0])
+    await plugin.bot.update_presence(
+        status=hikari.Status.ONLINE,
+        activity=hikari.Activity(
+            name=str(result[0])[:128],
+            type=hikari.ActivityType.PLAYING,
+        ),
+    )
 
 
 @lavalink.listen(lavaplayer.TrackStartEvent)
@@ -75,6 +82,13 @@ async def track_end_event(event: lavaplayer.TrackEndEvent):
     song = random.choice(songs)
     result = await lavalink.auto_search_tracks(song)
     await lavalink.play(guild, result[0])
+    await plugin.bot.update_presence(
+        status=hikari.Status.ONLINE,
+        activity=hikari.Activity(
+            name=str(result[0])[:128],
+            type=hikari.ActivityType.PLAYING,
+        ),
+    )
 
 
 @lavalink.listen(lavaplayer.WebSocketClosedEvent)

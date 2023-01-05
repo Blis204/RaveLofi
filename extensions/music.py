@@ -54,8 +54,8 @@ async def on_start(event: hikari.StartedEvent):
     print("[INFO] Joined voice channel")
     await asyncio.sleep(2)
 
-    result = await lavalink.auto_search_tracks("https://www.youtube.com/watch?v=iBAEt06J2Ho")
-    await lavalink.play(guild, result[0], 404574824795471872)
+    result = await lavalink.auto_search_tracks(song)
+    await lavalink.play(guild, result[0])
 
 
 @lavalink.listen(lavaplayer.TrackStartEvent)
@@ -74,7 +74,7 @@ async def track_end_event(event: lavaplayer.TrackEndEvent):
     f.close()
     song = random.choice(songs)
     result = await lavalink.auto_search_tracks(song)
-    await lavalink.play(guild, result[0], 404574824795471872)
+    await lavalink.play(guild, result[0])
 
 
 @lavalink.listen(lavaplayer.WebSocketClosedEvent)

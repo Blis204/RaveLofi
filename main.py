@@ -26,4 +26,4 @@ async def on_start(event):
 async def ping(ctx: lightbulb.Context) -> None:
     await ctx.respond("Pong!")
 
-bot.run()
+bot.run(status=hikari.Status.IDLE)
